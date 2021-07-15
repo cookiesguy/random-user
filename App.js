@@ -1,21 +1,67 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+   StyleSheet,
+   SafeAreaView,
+   RefreshControl,
+   ScrollView,
+} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Header from './components/Header';
+import UserList from './components/UserList';
+import UserInfo from './components/UserInfo';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
+const Home = ({ navigation }) => {
+   const [refreshing, setRefreshing] = React.useState(false);
+
+   const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+   }, []);
+
+   const finish = () => {
+      setRefreshing(false);
+   };
+
+   return (
+      <SafeAreaView style={styles.container}>
+         <Header></Header>
+         <ScrollView
+            contentContainerStyle={styles.scrollView}
+            refreshControl={
+               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+         >
+            <UserList
+               navigation={navigation}
+               finish={finish}
+               refresh={refreshing}
+            ></UserList>
+         </ScrollView>
+      </SafeAreaView>
+   );
+};
+
+const App = () => {
+   return (
+      <NavigationContainer>
+         <Stack.Navigator>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Detail" component={UserInfo} />
+         </Stack.Navigator>
+      </NavigationContainer>
+   );
+};
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+   container: {
+      flex: 1,
+   },
+   scrollView: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+   },
 });
+
+export default App;
