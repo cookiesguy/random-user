@@ -8,14 +8,12 @@ This is react native mobile app to get a random user
 
 ```
 npm i
-
 ```
 
 2. Start app
 
 ```
 expo start
-
 ```
 
 3. Download expo app and run
