@@ -16,7 +16,7 @@ npm i
 expo start
 ```
 
-3. Download expo app and run
+### Download expo app and run
  Go to app store or CH play, install Expo app
  Scan QR code on web browser, it will appear when you start app
  Ready to go
