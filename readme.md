@@ -6,13 +6,15 @@ This is react native mobile app to get a random user
 
 1. Install node modules
 
-```npm i
+```
+npm i
 
 ```
 
 2. Start app
 
-```expo start
+```
+expo start
 
 ```
 
