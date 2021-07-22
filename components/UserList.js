@@ -15,7 +15,7 @@ const Item = ({ navigation, user }) => {
    };
    return (
       <View style={styles.user}>
-         <Text style={styles.guideline}>Scroll to get another user</Text>
+         <Text style={styles.guideline}>Swipe down to get another user</Text>
          <Text style={styles.userName}>{user.name.first}</Text>
          <Image
             style={styles.image}
